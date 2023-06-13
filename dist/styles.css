@@ -1,0 +1,31 @@
+.container {
+  width: 568px;
+  margin: auto;
+}
+
+form {
+  margin-top: 3rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.error-symbol {
+  color: red;
+  margin-left: 5px;
+}
+
+.error-message {
+  font-size: 14px;
+  color: red;
+  margin-top: 5px;
+}
+
+.check-symbol {
+  color: rgb(108, 171, 13);
+  margin-left: 5px;
+}
