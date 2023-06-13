@@ -1,5 +1,41 @@
 import React, { useState } from 'react';
 
+export default function ValidatedInput() {
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(validate(''));
+
+  function handleChange(e) {
+    setPassword(e.target.value);
+    setError(validate(e.target.value));
+  }
+
+  function validate(value) {
+    const trimmedValue = value.trim();
+    const characterRequirements = /([A-Z])/g;
+    const digitRequirements = /\d/g;
+    const specialCharacterRequirements = /[!@#$%^&*()]/g;
+
+    if (!trimmedValue) return 'A password is required';
+    if (trimmedValue.length < 8) return 'Password must be at least 8 characters';
+    if (characterRequirements.test(value) && digitRequirements.test(value) && specialCharacterRequirements.test(value)) {
+      return null;
+    } else return 'Password must contain a capital letter, a number, and a special character.';
+  }
+
+  const validationClassName = error ? 'fa-x error-symbol' : 'fa-check check-symbol';
+
+  return (
+    <div className='container'>
+      <form action="" >
+        <label htmlFor='password'> Password </label>
+        <input id='password' type="password" value={password} onChange={handleChange} />
+        <i className={`fa-solid ${validationClassName}`}></i>
+        {error && <p className='error-message'>{error}</p>}
+      </form>
+    </div>
+  );
+}
+
 // export default function ValidatedInput() {
 //   const [value, setValue] = useState('');
 //   const [error, setError] = useState(validate(''));
